@@ -43,8 +43,19 @@ installPkg <- function(pkg) {
     }
     
     if(is.null(x)) {
-      x <- tryCatch({source("http://bioconductor.org/biocLite.R")
-        eval(parse(text = sprintf("biocLite(\"%s\")", pkg)))})
+      if(as.numeric(R.version$minor) < 5.0){
+        x <- tryCatch({source("http://bioconductor.org/biocLite.R")
+          eval(parse(text = sprintf("biocLite(\"%s\")", pkg)))})
+      }
+      else{
+        if (!'BiocManager' %in% installed.packages()){
+          if (!requireNamespace("BiocManager", quietly = TRUE))
+            install.packages("BiocManager")
+          BiocManager::install()
+        }
+        x <- tryCatch({eval(parse(text = sprintf("BiocManager::install(\"%s\")", pkg)))})
+      }
+      
     }
     
     if(is.null(x)) {
@@ -55,6 +66,7 @@ installPkg <- function(pkg) {
     }
   }
 }
+
 
 #####################################################################################
 #remove long stretches of N from genome
