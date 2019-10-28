@@ -5,8 +5,8 @@
 args <- commandArgs(trailingOnly = TRUE)
 
 genDat = strsplit(grep('--genome', args, value = TRUE), split = '=')[[1]][[2]]
-#genDat = "/project/ngs-common/index/Homo_sapiens/hs37d5/gencode.v19.annotation.txdb"
 seqDat = strsplit(grep('--data', args, value = TRUE), split = '=')[[1]][[2]]
+fileLoc = strsplit(grep('--filePath', args, value = TRUE), split = '=')[[1]][[2]]
 
 
 #####################################################################################
@@ -26,19 +26,17 @@ pkgLoad("bamsignals")
 #genome binning
 #####################################################################################
 
-txdbObj <- loadDb(genDat)
-seqlevels(txdbObj) = as.character(c(1:22,"X","Y"))
-tx  = transcripts(txdbObj)
-ebt = exonsBy(txdbObj, by = "tx", use.names = TRUE)
-ibt = intronsByTranscript(txdbObj, use.names=  TRUE)
-
-si = seqinfo(ebt)
-chr = seqnames(si)
-chrBSVal = paste("chr",chr,sep = "")
-seqLengths = seqlengths(si)
+chr = as.character(c(1:22,"X","Y"))
+chrBSVal = paste0("chr",chr)
+seqLengths = unlist(lapply(chrBSVal,function(x){
+  tmp.genome = BSgenome.Hsapiens.UCSC.hg19
+  where <- which(tmp.genome@seqinfo@seqnames == x)
+  current.chr <- tmp.genome[[where]]
+  current.chr@length
+}))
 
 chrBins <- lapply(chrBSVal, seq.check, given.seq = strrep("N",25),tmp.genome=BSgenome.Hsapiens.UCSC.hg19)
-binInfo = binning(chrBins,200)
+binInfo = binning(chrBins,200,seqLengths)
 bins = binInfo[[1]]
 seBins = bins
 seqlevels(seBins) = paste0("chr",seqlevels(seBins))
