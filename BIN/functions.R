@@ -73,7 +73,7 @@ seq.check <- function(given.seq, chr, tmp.genome){
 #####################################################################################
 #genome binning
 #####################################################################################
-binning <- function(chrBins,widthVal){
+binning <- function(chrBins,widthVal,seqLengths){
   gChrList <- do.call("c",chrBins)
   seqlevels(gChrList) <- sub('chr','',seqlevels(gChrList))
   gHuman <- GRanges(c(1:22,"X","Y"),IRanges(rep(1,23),seqLengths))
@@ -85,6 +85,7 @@ binning <- function(chrBins,widthVal){
   binData = GRangesList(bins = gValid, contigs = gContigs)
   return(binData)
 }
+
 
 #####################################################################################
 #output messages
