@@ -138,10 +138,9 @@ tssRev <- which(train$viterbi$vpath == 14)
 ttsRev <- which(train$viterbi$vpath == 8)
 
 mapData = data.frame("bin"= queryHits(gMap),"contig"=subjectHits(gMap))
-transFwd <- mapTssTts(tssFwd,ttsFwd,mapData)
-transFwd$Strand<-"+"
-transRev <- mapTssTts(tssRev,ttsRev,mapData)
-transRev$Strand<-"-"
+transFwd <- data.frame(mapTssTts(tssFwd,ttsFwd,mapData),strand = rep("+",nrow(mapTssTts(tssFwd,ttsFwd,mapData))))
+
+transRev <- data.frame(mapTssTts(tssRev,ttsRev,mapData),strand = rep("+",nrow(mapTssTts(tssRev,ttsRev,mapData))))
 
 tmpData <- rbind(transFwd,transRev)
 rownames(tmpData)=c(1:nrow(tmpData))
