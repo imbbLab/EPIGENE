@@ -1,4 +1,4 @@
 # EPIGENE
 EPIgenomic GENE prediction in R.
-# *Contact*
+#### *Contact*
 sahua@staff.uni-marburg.de
