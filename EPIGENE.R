@@ -17,7 +17,6 @@ source(paste0(fileLoc,"BIN/","functions.R"))
 
 pkgLoad("ggplot2")
 pkgLoad("GenomicFeatures")
-pkgLoad("BSgenome.Hsapiens.UCSC.hg19")
 pkgLoad("Biostrings")
 pkgLoad("GenomicRanges")
 pkgLoad("EPI.genefinder")
@@ -25,14 +24,24 @@ pkgLoad("normr")
 pkgLoad("bamsignals")
 pkgLoad("RColorBrewer")
 
+if (genDat == "mm10") pkg <- "BSgenome.Mmusculus.UCSC.mm10"
+if (genDat == "mm9") pkg  <- "BSgenome.Mmusculus.UCSC.mm9"
+if (genDat == "hg19") pkg <- "BSgenome.Hsapiens.UCSC.hg19"
+if (genDat == "hg38") pkg <- "BSgenome.Hsapiens.UCSC.hg38"
+
+pkgLoad(pkg)
+assign("txdb", eval(parse(text = pkg)))
+
 #####################################################################################
 #genome binning
 #####################################################################################
 
-chr = as.character(c(1:22,"X","Y"))
+if((genDat == "hg19")|(genDat == "hg38")) chr <- as.character(c(1:22,"X","Y"))
+if((genDat == "mm9")|(genDat == "mm10")) chr <- as.character(c(1:22,"X","Y"))
+
 chrBSVal = paste0("chr",chr)
 seqLengths = unlist(lapply(chrBSVal,function(x){
-  tmp.genome = BSgenome.Hsapiens.UCSC.hg19
+  tmp.genome = txdb
   where <- which(tmp.genome@seqinfo@seqnames == x)
   current.chr <- tmp.genome[[where]]
   current.chr@length
