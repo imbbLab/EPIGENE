@@ -40,6 +40,7 @@ if((genDat == "hg19")|(genDat == "hg38")) chr <- as.character(c(1:22,"X","Y"))
 if((genDat == "mm9")|(genDat == "mm10")) chr <- as.character(c(1:22,"X","Y"))
 
 chrBSVal = paste0("chr",chr)
+
 seqLengths = unlist(lapply(chrBSVal,function(x){
   tmp.genome = txdb
   where <- which(tmp.genome@seqinfo@seqnames == x)
