@@ -4,13 +4,18 @@
 
 args <- commandArgs(trailingOnly = TRUE)
 
-genDat = strsplit(grep('--genome', args, value = TRUE), split = '=')[[1]][[2]]
-seqDat = strsplit(grep('--data', args, value = TRUE), split = '=')[[1]][[2]]
-fileLoc = strsplit(grep('--filePath', args, value = TRUE), split = '=')[[1]][[2]]
-
+if(("--h" %in% args) & (length(as.character(args)) == 1)){
+  cat("Usage: EPIGENE.R --genome [Genome build] --data [location of input information in tab seperated text format] --filePath [location of EPIGENE directory] --h [help]\n")
+  q(save = "no", status = 0, runLast = TRUE)
+}
+if(length(args)>1){
+  genDat = strsplit(grep('--genome', args, value = TRUE), split = '=')[[1]][[2]]
+  seqDat = strsplit(grep('--data', args, value = TRUE), split = '=')[[1]][[2]]
+  fileLoc = strsplit(grep('--filePath', args, value = TRUE), split = '=')[[1]][[2]]
+}
 
 #####################################################################################
-#load all the relevant packages
+#load/install all the relevant packages
 #####################################################################################
 
 source(paste0(fileLoc,"BIN/","functions.R"))
@@ -35,12 +40,11 @@ assign("txdb", eval(parse(text = pkg)))
 #####################################################################################
 #genome binning
 #####################################################################################
-
+print("Binning the genome............")
 if((genDat == "hg19")|(genDat == "hg38")) chr <- as.character(c(1:22,"X","Y"))
-if((genDat == "mm9")|(genDat == "mm10")) chr <- as.character(c(1:22,"X","Y"))
+if((genDat == "mm9")|(genDat == "mm10")) chr <- as.character(c(1:19,"X","Y"))
 
 chrBSVal = paste0("chr",chr)
-
 seqLengths = unlist(lapply(chrBSVal,function(x){
   tmp.genome = txdb
   where <- which(tmp.genome@seqinfo@seqnames == x)
@@ -48,7 +52,7 @@ seqLengths = unlist(lapply(chrBSVal,function(x){
   current.chr@length
 }))
 
-chrBins <- lapply(chrBSVal, seq.check, given.seq = strrep("N",25),tmp.genome=BSgenome.Hsapiens.UCSC.hg19)
+chrBins <- lapply(chrBSVal, seq.check, given.seq = strrep("N",25),tmp.genome=txdb)
 binInfo = binning(chrBins,200,seqLengths)
 bins = binInfo[[1]]
 seBins = bins
@@ -58,7 +62,7 @@ gContigs = binInfo[[2]]
 #####################################################################################
 #obtain the read counts for genomic bins
 #####################################################################################
-
+print("Obtain the read counts in genomic bins............")
 featureInfo = read.table(seqDat,sep = "\t",col.names = c("features","location","sequencing"))
 
 features = as.character(featureInfo$features)
@@ -78,7 +82,7 @@ names(counts) = features
 #####################################################################################
 #obtain binarized enrichments
 #####################################################################################
-
+print("Binarizing the enrichment values of histone modifications............")
 runNormR = list(
   H3K27ac = c("H3K27ac", "HM.input"),
   H3K27me3 = c("H3K27me3", "HM.input"),
@@ -97,7 +101,7 @@ clzz = sapply(norm, function(x) { cl = normr::getClasses(x, fdr = 0.2); cl[!is.f
 #####################################################################################
 #create updateEmission and updateTransition
 #####################################################################################
-
+print("Preparing the input parameters............")
 emissionProb = readRDS(paste0(fileLoc,"/DATA/","emissionProb.rds"))
 transitionMat = readRDS(paste0(fileLoc,"/DATA/","transitionMat.rds"))
 updateEmission = c(rep(FALSE, 14), rep(TRUE, 3))
@@ -136,7 +140,7 @@ names(seqLenList) <- c(1:length(gContigs))
 #####################################################################################
 #predicting transcription units
 #####################################################################################
-
+print("Predicting active transcription units............")
 train = EPI.genefinder(clzz[, 1:6], emissionProb, NULL, t(transitionMat), seqLenList, updateEmission,
                        t(updateTransition), maxiter = 500, nthreads = 24)
 labels = c("tss", "firstExon", "firstIntron", "iExon", "iIntron", "lastExon", "tts", "rtss",
@@ -189,3 +193,5 @@ estParam = ggplot(plotEM,aes(HistoneMarks,States))+geom_tile(aes(fill = Probabil
         axis.title.x = element_blank(),axis.title.y = element_text(size = 10),
         legend.text = element_text(size = 10),legend.title = element_text(size = 10))
 ggsave(estParam,filename = paste0(fileLoc,"estimated_params.pdf"))
+
+print("Done............")
