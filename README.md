@@ -65,10 +65,12 @@ The  --data parameter requires the info file (specify the exact location of file
 Location of EPIGENE folder.
 
 #### Example run:
+```R
 Rscript EPIGENE.R --genome=hg19 --data=EPIGENE/EXAMPLE/fileDetails_K562.txt --filePath=/project/projs-sahu/EPIGENE
+```
 
 #### Output
 
-> Bed file containing genomic co-ordinates of active transcription units: 'TU_predictions.bed'\
-> Heatmap of estimated parameters: 'estimated_params.pdf'
+> 'TU_predictions.bed'    : Bed file containing genomic co-ordinates of active transcription units\
+> 'estimated_params.pdf'  : Heatmap of estimated parameters: 'estimated_params.pdf'
 
