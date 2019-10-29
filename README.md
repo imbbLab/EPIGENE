@@ -56,4 +56,11 @@ sequencing_info : SE (for single-end sequencing) or PR (for paired-end sequencin
 
 The  --data parameter requires the info file (specify the exact location of file if this file is not located in EPIGENE directory). An example info file (fileDetails_K562.txt) can be found in EXAMPLE folder.
 
+##### --filePath
+
+Location of EPIGENE folder.
+
+#### Example run:
+Rscript EPIGENE.R --genome hg19 --data EPIGENE/EXAMPLE/fileDetails_K562.txt --filePath /project/projs-sahu/EPIGENE
+
 
