@@ -51,8 +51,9 @@ H3K27ac, H3K4me3, H3K4me1, H3K36m3, H3K27me3, H3K9me3.\
 The info file should contain the location and sequencing details of these histone modifications. The required columns in info file are: "features", 'location" and "sequencing_info".
 
 features        : list of histone modifcations
-location        : location of the alignments in bam format, e.g.: 'TEST/DATA/ChIPseq/condition1.H3K27ac.bam'\
-sequencing_info : SE (for single-end sequencing) or PR (for paired-end sequencing)
+location        : location of the alignments in bam format, e.g.: '/project/projs-sahu/EPIGENE/DATA/H3K27ac.bam'\
+sequencing_info : SE (for single-end sequencing) or PR (for paired-end sequencing)\
 
-The  --data parameter requires the info file (specify the exact location of file if this file is not located in EPIGENE directory) 
+The  --data parameter requires the info file (specify the exact location of file if this file is not located in EPIGENE directory). An example info file (fileDetails_K562.txt) can be found in EXAMPLE folder.
+
 
