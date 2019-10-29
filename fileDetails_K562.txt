@@ -1,0 +1,12 @@
+H3K27ac	/project/chungmap/EPI.gene/features/H3K27ac/H3K27ac.MarkDup.bam	PE
+H3K27me3	/project/chungmap/EPI.gene/features/H3K27me3/H3K27me3.MarkDup.bam	PE
+H3K36me3	/project/chungmap/EPI.gene/features/H3K36me3/H3K36me3.MarkDup.bam	PE
+H3K4me1	/project/chungmap/EPI.gene/features/H3K4me1/H3K4me1.MarkDup.bam	PE
+H3K4me3	/project/chungmap/EPI.gene/features/H3K4me3/H3K4me3.MarkDup.bam	PE
+H3K9me3	/project/chungmap/EPI.gene/features/H3K9me3/H3K9me3.MarkDup.bam	PE
+HM.input	/project/chungmap/EPI.gene/features/HM.input/HM.input.MarkDup.bam	PE
+PolII.8WG16	/project/chungmap/EPI.gene/features/PolII.8WG16/PolII.8WG16.MarkDup.bam	PE
+PolIIS2P.H5	/project/chungmap/EPI.gene/features/PolIIS2P.H5/PolIIS2P.H5.MarkDup.bam	PE
+PolIIS5P.4H8	/project/chungmap/EPI.gene/features/PolIIS5P.4H8/PolIIS5P.4H8.MarkDup.bam	PE
+PolIIS7P.4E12	/project/chungmap/EPI.gene/features/PolIIS7P.4E12/PolIIS7P.4E12.MarkDup.bam	PE
+PolII.input	/project/chungmap/EPI.gene/features/PolII.input/PolII.input.MarkDup.bam	PE
