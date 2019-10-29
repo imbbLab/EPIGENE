@@ -28,7 +28,7 @@ Nothing needs to be installed manually.
 > GenomicAlignments
 ## Run EPIGENE
 
-#### Get the help message
+##### Get the help message
 
 Navigate to 'EPIGENE' directory and type 'Rscript EPIGENE.R' or 'Rscript EPIGENE.R -h' to see EPIGENE usage:
 
@@ -37,11 +37,11 @@ Navigate to 'EPIGENE' directory and type 'Rscript EPIGENE.R' or 'Rscript EPIGENE
 
 #### Input parameters and data preparation
 
-####### --genome
+##### --genome
 
 Currently EPIGENE supports hg19,hg38,mm9 and mm10.
 
-####### --data
+##### --data
 
 The only preparation that has to be done is to create a tab delimited info file that lists
 the location of all ChIP-seq experiments in bam file format.\ All the bam files should be indexed, the .bai file should be present in the same location as the bam file.\ 
