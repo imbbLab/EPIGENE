@@ -1,9 +1,9 @@
 # EPIGENE
 EPIgenomic GENE prediction in R.
 EPIGENE uses a multivariate HMM to predict active transcription units.
-### *Contact*
+## Contact
 sahua@staff.uni-marburg.de
-### *Installation*
+## Installation
 ##### R PACKAGES
 
 All required R packages are installed at the first run.\
