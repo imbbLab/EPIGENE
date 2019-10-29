@@ -26,4 +26,11 @@ Nothing needs to be installed manually.
 > Biostrings\
 > RColorBrewer\
 > GenomicAlignments
+## Run EPIGENE
+
+#### Get the help message
+
+Navigate to 'EPIGENE' directory and type 'Rscript EPIGENE.R' or 'Rscript EPIGENE.R -h' to see all possible functions of CRUP:
+
+>Usage: EPIGENE.R --genome [Genome build] --data [location of input information in tab seperated text format] --filePath [location of EPIGENE directory] --h [help]
 
