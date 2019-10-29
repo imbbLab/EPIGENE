@@ -25,5 +25,5 @@ Nothing needs to be installed manually.
 > normr\
 > Biostrings\
 > RColorBrewer\
-> GenomicAlignments\
+> GenomicAlignments
 
