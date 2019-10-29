@@ -64,7 +64,7 @@ Location of EPIGENE folder.
 #### Example run:
 Rscript EPIGENE.R --genome=hg19 --data=EPIGENE/EXAMPLE/fileDetails_K562.txt --filePath=/project/projs-sahu/EPIGENE
 
-##### Output
+#### Output
 
 > Bed file containing genomic co-ordinates of active transcription units: 'TU_predictions.bed'\
 > Heatmap of estimated parameters: 'estimated_params.pdf'
