@@ -40,7 +40,7 @@ assign("txdb", eval(parse(text = pkg)))
 #####################################################################################
 #genome binning
 #####################################################################################
-print("Binning the genome............")
+cat("Binning the genome............")
 if((genDat == "hg19")|(genDat == "hg38")) chr <- as.character(c(1:22,"X","Y"))
 if((genDat == "mm9")|(genDat == "mm10")) chr <- as.character(c(1:19,"X","Y"))
 
@@ -52,8 +52,8 @@ seqLengths = unlist(lapply(chrBSVal,function(x){
   current.chr@length
 }))
 
-chrBins <- lapply(chrBSVal, seq.check, given.seq = strrep("N",25),tmp.genome=txdb)
-binInfo = binning(chrBins,200,seqLengths)
+suppressWarnings(chrBins <- lapply(chrBSVal, seq.check, given.seq = strrep("N",25),tmp.genome=txdb))
+suppressWarnings(binInfo = binning(chrBins,200,seqLengths))
 bins = binInfo[[1]]
 seBins = bins
 seqlevels(seBins) = paste0("chr",seqlevels(seBins))
@@ -62,7 +62,7 @@ gContigs = binInfo[[2]]
 #####################################################################################
 #obtain the read counts for genomic bins
 #####################################################################################
-print("Obtain the read counts in genomic bins............")
+cat("Obtain the read counts in genomic bins............")
 featureInfo = read.table(seqDat,sep = "\t",col.names = c("features","location","sequencing"))
 
 features = as.character(featureInfo$features)
@@ -82,7 +82,7 @@ names(counts) = features
 #####################################################################################
 #obtain binarized enrichments
 #####################################################################################
-print("Binarizing the enrichment values of histone modifications............")
+cat("Binarizing the enrichment values of histone modifications............")
 runNormR = list(
   H3K27ac = c("H3K27ac", "HM.input"),
   H3K27me3 = c("H3K27me3", "HM.input"),
@@ -101,7 +101,7 @@ clzz = sapply(norm, function(x) { cl = normr::getClasses(x, fdr = 0.2); cl[!is.f
 #####################################################################################
 #create updateEmission and updateTransition
 #####################################################################################
-print("Preparing the input parameters............")
+cat("Preparing the input parameters............")
 emissionProb = readRDS(paste0(fileLoc,"/DATA/","emissionProb.rds"))
 transitionMat = readRDS(paste0(fileLoc,"/DATA/","transitionMat.rds"))
 updateEmission = c(rep(FALSE, 14), rep(TRUE, 3))
@@ -140,7 +140,7 @@ names(seqLenList) <- c(1:length(gContigs))
 #####################################################################################
 #predicting transcription units
 #####################################################################################
-print("Predicting active transcription units............")
+cat("Predicting active transcription units............")
 train = EPI.genefinder(clzz[, 1:6], emissionProb, NULL, t(transitionMat), seqLenList, updateEmission,
                        t(updateTransition), maxiter = 500, nthreads = 24)
 labels = c("tss", "firstExon", "firstIntron", "iExon", "iIntron", "lastExon", "tts", "rtss",
@@ -194,4 +194,4 @@ estParam = ggplot(plotEM,aes(HistoneMarks,States))+geom_tile(aes(fill = Probabil
         legend.text = element_text(size = 10),legend.title = element_text(size = 10))
 ggsave(estParam,filename = paste0(fileLoc,"estimated_params.pdf"))
 
-print("Done............")
+cat("Done............")
