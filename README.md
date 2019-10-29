@@ -43,5 +43,12 @@ Currently EPIGENE supports hg19,hg38,mm9 and mm10.
 
 ####### --data
 The only preparation that has to be done is to create a tab delimited info file that lists
-the location of all ChIP-seq experiments in bam file format. The --data parameter requires the location of 
+the location of all ChIP-seq experiments in bam file format. All the bam files should be indexed, the .bai file should be present in the same location as the bam file. EPIGENE requires the following histone modifications for active transcription unit prediction:\n
+H3K27ac, H3K4me3, H3K4me1, H3K36m3, H3K27me3, H3K9me3. \n
+The info file should contain the location and sequencing details of these histone modifications. The required columns in info file are: "features", 'location" and "sequencing_info".
+
+features      : list of histone modifcations
+location      : location of the alignments in bam format, e.g.: 'TEST/DATA/ChIPseq/condition1.H3K27ac.bam'\
+
+The --data parameter requires the info file (alongwith the exact location of file if this file is not located in EPIGENE directory) 
 
