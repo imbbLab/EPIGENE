@@ -53,7 +53,7 @@ seqLengths = unlist(lapply(chrBSVal,function(x){
 }))
 
 suppressWarnings(chrBins <- lapply(chrBSVal, seq.check, given.seq = strrep("N",25),tmp.genome=txdb))
-suppressWarnings(binInfo = binning(chrBins,200,seqLengths))
+suppressWarnings(binInfo <- binning(chrBins,200,seqLengths))
 bins = binInfo[[1]]
 seBins = bins
 seqlevels(seBins) = paste0("chr",seqlevels(seBins))
