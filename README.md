@@ -70,6 +70,10 @@ Rscript EPIGENE.R --genome=hg19 --data=EPIGENE/EXAMPLE/fileDetails_K562.txt --fi
 ```
 
 #### Output
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
 
 > |TU_predictions.bed        | Bed file containing genomic co-ordinates of active transcription units|
 > |estimated_params.pdf      | Heatmap of estimated parameters|
