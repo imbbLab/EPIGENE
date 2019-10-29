@@ -33,8 +33,11 @@ Nothing needs to be installed manually.
 
 Navigate to 'EPIGENE' directory and type 'Rscript EPIGENE.R' or 'Rscript EPIGENE.R -h' to see EPIGENE usage:
 
->Usage: EPIGENE.R --genome=[Genome build] --data=[location of input information in tab seperated text format] --filePath=[location of EPIGENE directory] --h [help]
+```R
+Rscript EPIGENE.R -h
 
+Usage: EPIGENE.R --genome=[Genome build] --data=[location of input information in tab seperated text format] --filePath=[location of EPIGENE directory] --h [help]
+```
 
 #### Input parameters and data preparation
 
