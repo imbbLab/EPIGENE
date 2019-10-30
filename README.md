@@ -56,7 +56,7 @@ The info file should contain the location and sequencing details of these histon
 
 features        : list of histone modifcations\
 location        : location of the alignments in bam format, e.g.: '/project/projs-sahu/EPIGENE/DATA/H3K27ac.bam'\
-sequencing_info : SE (for single-end sequencing) or PR (for paired-end sequencing)\
+sequencing_info : SE (for single-end sequencing) or PE (for paired-end sequencing)\
 
 The  --data parameter requires the info file (specify the exact location of file if this file is not located in EPIGENE directory). An example info file (fileDetails_K562.txt) can be found in EXAMPLE folder.
 
