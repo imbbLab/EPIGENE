@@ -66,7 +66,7 @@ Location of EPIGENE folder.
 
 #### Example run:
 ```R
-Rscript EPIGENE.R --genome=hg19 --data=EPIGENE/EXAMPLE/fileDetails_K562.txt --filePath=/project/projs-sahu/EPIGENE
+Rscript EPIGENE.R --genome=hg19 --data=EPIGENE/EXAMPLE/fileDetails_K562.txt --filePath=/project/projs-sahu/EPIGENE --cores=10
 ```
 
 #### Output
