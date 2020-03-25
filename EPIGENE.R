@@ -26,8 +26,8 @@ pkgLoad("GenomicFeatures")
 pkgLoad("Biostrings")
 pkgLoad("GenomicRanges")
 pkgLoad("EPI.genefinder")
-pkgLoad("normr")
 pkgLoad("bamsignals")
+pkgLoad("normr")
 pkgLoad("RColorBrewer")
 
 if (genDat == "mm10") pkg <- "BSgenome.Mmusculus.UCSC.mm10"
