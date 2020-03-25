@@ -5,13 +5,14 @@
 args <- commandArgs(trailingOnly = TRUE)
 
 if(("--h" %in% args) & (length(as.character(args)) == 1)){
-  cat("Usage: EPIGENE.R --genome [Genome build] --data [location of input information in tab seperated text format] --filePath [location of EPIGENE directory] --h [help]\n")
+  cat("Usage: EPIGENE.R --genome [Genome build] --data [location of input information in tab seperated text format] --filePath [location of EPIGENE directory] --cores [number of cores] --h [help]\n")
   q(save = "no", status = 0, runLast = TRUE)
 }
 if(length(args)>1){
   genDat = strsplit(grep('--genome', args, value = TRUE), split = '=')[[1]][[2]]
   seqDat = strsplit(grep('--data', args, value = TRUE), split = '=')[[1]][[2]]
   fileLoc = strsplit(grep('--filePath', args, value = TRUE), split = '=')[[1]][[2]]
+  nCores = strsplit(grep('--cores', args, value = TRUE), split = '=')[[1]][[2]]
 }
 
 #####################################################################################
@@ -74,7 +75,7 @@ counts = mclapply(1:length(features), function(x) {
     bamCount(trFPath[x], bins, mapqual = 30, filteredFlag = 1024, paired.end = "midpoint")
   else
     bamCount(trFPath[x], seBins, mapqual = 30, filteredFlag = 1024, paired.end = "ignore")
-}, mc.cores = 10)
+}, mc.cores = nCores)
 
 
 names(counts) = features
@@ -94,7 +95,7 @@ runNormR = list(
 
 norm = mclapply(runNormR, function(run) {
   enrichR(treatment = counts[[run[1]]], control = counts[[run[2]]], genome = bins,binFilter = "zero")
-}, mc.cores = 10)
+}, mc.cores = nCores)
 
 clzz = sapply(norm, function(x) { cl = normr::getClasses(x, fdr = 0.2); cl[!is.finite(cl)] = 0; cl})
 
