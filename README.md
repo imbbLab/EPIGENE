@@ -6,7 +6,7 @@ sahua [at] staff [dot] uni-marburg [dot] de
 ## Installation
 ##### R PACKAGES
 
-All required R packages are installed at the first run.\
+`EPIGENE` needs R 3.2 or higher. All required R packages are installed at the first run.\
 Nothing needs to be installed manually.
 
 > Overview of all packages:
