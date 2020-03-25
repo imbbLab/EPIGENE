@@ -36,7 +36,7 @@ Navigate to 'EPIGENE' directory and type 'Rscript EPIGENE.R --h' to see the usag
 ```R
 Rscript EPIGENE.R --h
 
-Usage: EPIGENE.R --genome=[Genome build] --data=[location of input information in tab seperated text format] --filePath=[location of EPIGENE directory] --h [help]
+Usage: EPIGENE.R --genome=[Genome build] --data=[location of input information in tab seperated text format] --filePath=[location of EPIGENE directory] --cores=[number of cores] --h [help]
 ```
 
 #### Input parameters and data preparation
