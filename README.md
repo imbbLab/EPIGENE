@@ -1,8 +1,18 @@
 # EPIGENE
 EPIgenomic GENE prediction in R.
 EPIGENE uses a multivariate HMM to predict active transcription units.
+
 ## Contact
 sahua [at] staff [dot] uni-marburg [dot] de
+
+#### *Citation*
+
+If you are using CRUP, please cite the following publication:\
+This is still unpublished work.
+
+> Sahu A., Li Na., Dunkel I., Chung HR. EPIGENE: genome-wide transcription unit annotation using a
+multivariate probabilistic model of histone modifications. BioRxiv, DOI: 10.1101/2019.12.17.878454
+
 ## Installation
 ##### R PACKAGES
 
