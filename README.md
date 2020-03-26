@@ -7,7 +7,7 @@ sahua [at] staff [dot] uni-marburg [dot] de
 
 #### *Citation*
 
-If you are using CRUP, please cite the following publication:\
+If you are using EPIGENE, please cite the following publication:\
 This is still unpublished work.
 
 > Sahu A., Li Na., Dunkel I., Chung HR. EPIGENE: genome-wide transcription unit annotation using a
