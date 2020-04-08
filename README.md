@@ -7,7 +7,7 @@ sahua [at] staff [dot] uni-marburg [dot] de
 
 #### *Citation*
 
-If you are using EPIGENE, please cite the following publication:\
+If you are using EPIGENE, please cite the following publication: \
 
 > Sahu, A., Li, N., Dunkel, I. et al. EPIGENE: genome-wide transcription unit annotation using a multivariate probabilistic model of histone modifications. Epigenetics & Chromatin 13, 20 (2020). https://doi.org/10.1186/s13072-020-00341-z
 
